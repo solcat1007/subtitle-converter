@@ -1,38 +1,28 @@
 # 字幕格式转换器 (Subtitle Converter)
 
-SRT / VTT / ASS(SSA) 三种字幕格式互相转换的桌面工具，基于 tkinter 构建，纯 Python 标准库实现，零外部依赖。
+SRT / VTT / ASS(SSA) 三种字幕格式互相转换。
 
 ## 功能
 
-- **三格式互转**：SRT ↔ VTT ↔ ASS(SSA) 任意方向转换
-- **批量转换**：支持多文件同时转换，一键批量处理
-- **拖拽支持**：直接拖拽字幕文件到窗口，自动识别格式
-- **实时预览**：左侧原始内容、右侧转换结果，左右分栏对比
-- **编码自动检测**：自动识别 UTF-8 / UTF-8-BOM / GBK / UTF-16 编码
-- **ASS 特效处理**：自动剥离 ASS 特效标记（{\xxx}），保留纯文本
-- **VTT 样式过滤**：自动移除 VTT 内联 HTML 标签
-- **智能文件命名**：转换后自动添加格式后缀，避免覆盖
-- **中英文双语**：界面完整支持中文/英文切换
-- **全屏窗口**：打开即全屏，Esc 退出
+- 拖拽或浏览选择文件，支持批量转换
+- 转换前可预览原始内容与结果对比
+- 编码自动检测：UTF-8 / UTF-8-BOM / GBK / UTF-16
+- 内置中英文双语切换
 
-## 使用方法
+## 运行
 
-1. 运行 `python subtitle_converter.py`
-2. 拖拽字幕文件到窗口，或点击"选择文件"浏览
-3. 选择目标格式（SRT / VTT / ASS）
-4. 勾选"批量转换"可同时转换多个文件
-5. 点击"开始转换"
-6. 转换后的文件保存在原目录，文件名自动添加格式后缀
+```bash
+python subtitle_converter.py
+```
 
-## 支持的格式
+零外部依赖，仅需 Python 标准库 + tkinter。
 
-| 格式 | 扩展名 | 说明 |
-|------|--------|------|
-| SRT | .srt | SubRip 字幕，最通用的字幕格式 |
-| VTT | .vtt | WebVTT，HTML5 视频字幕标准 |
-| ASS | .ass | Advanced SubStation Alpha，支持特效 |
-| SSA | .ssa | SubStation Alpha，ASS 前身 |
+## 测试数据
 
-## 技术栈
+`tests/` 目录下有 `test_ass.ass`、`test_srt.srt`、`test_vtt.vtt` 三个样例文件，
+可直接用于验证转换效果。
 
-Python 3 + tkinter，纯标准库实现，无需安装任何第三方包。
+## 注意事项
+
+- ASS 字幕的样式、特效、定位信息在转换为 SRT/VTT 时会丢失（后两者不支持）
+- ASS → SRT 时会剥离所有 `{}` 特效标签

@@ -21,6 +21,11 @@ import os
 import re
 import ctypes
 from ctypes import wintypes
+
+# 注意：ctypes.wintypes 并未导出 HDROP 类型。
+# HDROP 本质是一个句柄（void*），因此统一用 wintypes.HANDLE 代替。
+# 早期版本误用了 wintypes.HDROP，会导致导入时抛 AttributeError。
+
 from pathlib import Path
 
 # ============================================================================
@@ -39,10 +44,10 @@ WM_DROPFILES = 0x0233
 shell32.DragAcceptFiles.argtypes = [wintypes.HWND, wintypes.BOOL]
 shell32.DragAcceptFiles.restype = None
 
-shell32.DragQueryFileW.argtypes = [wintypes.HDROP, wintypes.UINT, wintypes.LPWSTR, wintypes.UINT]
+shell32.DragQueryFileW.argtypes = [wintypes.HANDLE, wintypes.UINT, wintypes.LPWSTR, wintypes.UINT]
 shell32.DragQueryFileW.restype = wintypes.UINT
 
-shell32.DragFinish.argtypes = [wintypes.HDROP]
+shell32.DragFinish.argtypes = [wintypes.HANDLE]
 shell32.DragFinish.restype = None
 
 
