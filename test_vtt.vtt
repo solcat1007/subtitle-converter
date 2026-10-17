@@ -1,0 +1,24 @@
+WEBVTT
+
+1
+00:00:01.000 --> 00:00:04.000
+Hello, welcome to Subtitle Converter.
+
+2
+00:00:05.000 --> 00:00:08.500
+This is a VTT format test subtitle.
+
+3
+00:00:10.000 --> 00:00:14.200
+Supports multiple format conversion:
+SRT, VTT, ASS/SSA.
+
+4
+00:00:15.000 --> 00:00:19.800
+Second line text test
+This is multi-line subtitle example.
+
+5
+00:00:20.000 --> 00:00:25.000
+The last sentence.
+Test complete.
